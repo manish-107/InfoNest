@@ -1,6 +1,3 @@
-Certainly! Here's a template for your `README.md` file for the "InfoNest" project:
-
-```markdown
 # InfoNest
 
 InfoNest is a TypeScript-based full-stack web application designed to organize and manage information efficiently.

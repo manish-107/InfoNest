@@ -1,4 +1,4 @@
-# InfoNest
+# InfoNest - BLOG
 
 InfoNest is a TypeScript-based full-stack web application designed to organize and manage information efficiently.
 It utilizes React in the frontend, Cloudflare Workers in the backend, and PostgreSQL with Prisma ORM for data storage.

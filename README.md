@@ -1,4 +1,4 @@
-Certainly! Here's a template for your `README.md` file for the "InfoNest" project:
+Certainly! Here's the continuation with your requested addition:
 
 ```markdown
 # InfoNest
@@ -63,7 +63,6 @@ Contributions are welcome! If you'd like to contribute to InfoNest, please follo
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
 ```
 
-Replace placeholders like `your-username` with your actual GitHub username and adjust paths or commands as per your project's specific structure and setup requirements. This `README.md` template covers project overview, features, setup instructions, deployment guidance, contribution guidelines, and licensing information, providing a comprehensive introduction for users and contributors.
+This version incorporates the initial setup instructions with proper formatting and word wrapping, ensuring clarity and readability in the `README.md` file for your GitHub repository. Adjust the placeholders like `your-username` with your actual GitHub username and paths as per your project's structure.

@@ -58,14 +58,3 @@ Contributions are welcome! If you'd like to contribute to InfoNest, please follo
 4. Commit your changes (`git commit -am 'Add new feature'`).
 5. Push to the branch (`git push origin feature/your-feature`).
 6. Submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
-```
-
-Replace placeholders like `your-username` with your actual GitHub username and adjust paths or
-commands as per your project's specific structure and setup requirements. This `README.md`
- template covers project overview, features, setup instructions, deployment guidance, contribution
-guidelines, and licensing information, providing a comprehensive introduction for users and contributors.

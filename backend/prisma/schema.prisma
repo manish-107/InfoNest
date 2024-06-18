@@ -16,11 +16,12 @@ datasource db {
 model User {
   id       String     @id @default(uuid())
   email    String     @unique
-  name     String?
+  name     String
   password String
   posts    Post[]
   likes    LikePost[]
   saved    SavedPost[]
+  date  DateTime   @default(now())
 }
 
 model Post {

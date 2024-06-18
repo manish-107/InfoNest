@@ -1,19 +1,36 @@
 import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { decode, sign, verify } from 'hono/jwt'
+import { verify } from 'hono/jwt'
 
-export const blogRouter  = new Hono<{
-    Bindings:{
-        DATABASE_URL:string;
+
+export const blogRouter = new Hono<{
+    Bindings: {
+        DATABASE_URL: string;
         JWT_SECRET: string;
+    },
+    Variables: {
+        userId: string;
     }
 }>();
 
+blogRouter.use(async (c, next) => {
+    const jwt = c.req.header('Authorization');
+	if (!jwt) {
+		c.status(401);
+		return c.json({ error: "unauthorized" });
+	}
+	const token = jwt.split(' ')[1];
+	const payload:any = await verify(token, c.env.JWT_SECRET);
+   
+	if (!payload) {
+		c.status(401);
+		return c.json({ error: "unauthorized" });
+	}
 
-blogRouter.use('/*', async(c,next)=>{
-   await next();
-})
+	c.set('userId', payload.id);
+	await next()
+});
 
 
 blogRouter.post("/", async(c)=>{
@@ -69,6 +86,23 @@ blogRouter.get("/bulk", async(c)=>{
      const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
+
     const blogs = await prisma.post.findMany({});
     return c.json({posts:blogs});
 })
+
+
+blogRouter.get("/:id", async(c)=>{
+    const id = c.req.param("id");
+      const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+        let post = await prisma.post.findUnique({
+            where:{
+                id:id
+            }
+          })
+
+          return c.json({post})
+})
+

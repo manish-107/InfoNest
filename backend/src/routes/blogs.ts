@@ -14,7 +14,8 @@ export const blogRouter = new Hono<{
     }
 }>();
 
-blogRouter.use(async (c, next) => {
+blogRouter.use('/*',async (c, next) => {
+    try {
     const jwt = c.req.header('Authorization');
 	if (!jwt) {
 		c.status(401);
@@ -29,6 +30,11 @@ blogRouter.use(async (c, next) => {
 	}
 	c.set('userId', payload.id);
 	await next()
+    } catch (error) {
+        return c.json({
+            error:error
+        })
+    }
 });
 
 
@@ -150,7 +156,7 @@ blogRouter.post('/save', async(c)=>{
         })
         return c.json({savedPost:savedPost})
     } catch (error) {
-        c.status(503)
+        c.status(400)
        return c.json({
         error:"enable to save post"
        }) 
@@ -165,9 +171,9 @@ blogRouter.get('/savedPost', async(c)=>{
 	}).$extends(withAccelerate());
     try {
         const savedPosts = await prisma.savedPost.findMany({
-        //     where:{
-        //         savedUserId:userId
-        //     }
+            where:{
+                savedUserId:userId
+            }
         }) 
         return c.json({savedPosts:savedPosts});
     } catch (error) {

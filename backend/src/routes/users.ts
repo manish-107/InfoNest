@@ -76,6 +76,7 @@ userRouter.get('/getAllUsers', async(c)=>{
   const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
+  
   try {
     const AllUser = await prisma.user.findMany({})
     return c.json({users:AllUser});

@@ -27,35 +27,43 @@ blogRouter.use(async (c, next) => {
 		c.status(401);
 		return c.json({ error: "unauthorized" });
 	}
-
 	c.set('userId', payload.id);
 	await next()
 });
 
 
 blogRouter.post("/", async(c)=>{
+    const userId = c.get('userId');
+    console.log(userId);
     const body = await c.req.json();
     const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
-
+    try {
+        
    const blog = await prisma.post.create({
         data:{
             title:body.title,
             content:body.content,
             imageUrl:body.imageUrl,
-            authorId:"0137e9bf-15e3-48e7-86af-0e4ba93e668c"
+            authorId:userId,
         }
     })
-
     return c.json({
         id:blog.id
     })
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
 
 blogRouter.put("/",async(c)=>{
+    const userId = c.get('userId');
     const body = await c.req.json();
+    console.log(body)
+    console.log(userId)
     const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
@@ -64,6 +72,7 @@ blogRouter.put("/",async(c)=>{
           const updateBlog = await prisma.post.update({
         where:{
             id:body.postid,
+            authorId: userId
         },
         data:{
             title:body.title,
@@ -71,6 +80,8 @@ blogRouter.put("/",async(c)=>{
             content:body.content
         }
     })
+    
+    console.log(updateBlog)
     return c.json({
         id:updateBlog.id
     })
@@ -102,7 +113,27 @@ blogRouter.get("/:id", async(c)=>{
                 id:id
             }
           })
-
           return c.json({post})
 })
 
+blogRouter.post('/like', async(c)=>{
+    const {postId} = await c.req.json();
+    const userId = c.get('userId');
+     const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+    try {
+        const likePost = await prisma.likePost.create({
+            data:{
+                userId:userId,
+                postId:postId
+            }
+        })
+        return c.json(
+            likePost,201)
+    } catch (error) {
+       return c.json({
+        error:"enable to like post"
+       }) 
+    }
+})

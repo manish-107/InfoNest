@@ -34,7 +34,6 @@ blogRouter.use(async (c, next) => {
 
 blogRouter.post("/", async(c)=>{
     const userId = c.get('userId');
-    console.log(userId);
     const body = await c.req.json();
     const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
@@ -53,7 +52,8 @@ blogRouter.post("/", async(c)=>{
         id:blog.id
     })
     } catch (error) {
-        console.log(error)
+    
+       return c.json({error:"enable to create blog"})
     }
 
 })
@@ -62,8 +62,6 @@ blogRouter.post("/", async(c)=>{
 blogRouter.put("/",async(c)=>{
     const userId = c.get('userId');
     const body = await c.req.json();
-    console.log(body)
-    console.log(userId)
     const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
@@ -81,7 +79,6 @@ blogRouter.put("/",async(c)=>{
         }
     })
     
-    console.log(updateBlog)
     return c.json({
         id:updateBlog.id
     })
@@ -103,7 +100,7 @@ blogRouter.get("/bulk", async(c)=>{
 })
 
 
-blogRouter.get("/:id", async(c)=>{
+blogRouter.get("/post/:id", async(c)=>{
     const id = c.req.param("id");
       const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
@@ -135,5 +132,46 @@ blogRouter.post('/like', async(c)=>{
        return c.json({
         error:"enable to like post"
        }) 
+    }
+})
+
+blogRouter.post('/save', async(c)=>{
+    const {postId} = await c.req.json();
+    const userId = c.get('userId');
+     const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+    try {
+        const savedPost = await prisma.savedPost.create({
+            data:{
+                savedUserId:userId,
+                postId:postId
+            }
+        })
+        return c.json({savedPost:savedPost})
+    } catch (error) {
+        c.status(503)
+       return c.json({
+        error:"enable to save post"
+       }) 
+    }
+})
+
+
+blogRouter.get('/savedPost', async(c)=>{
+    const userId = c.get('userId');
+      const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+    try {
+        const savedPosts = await prisma.savedPost.findMany({
+        //     where:{
+        //         savedUserId:userId
+        //     }
+        }) 
+        return c.json({savedPosts:savedPosts});
+    } catch (error) {
+        c.status(503)
+        return c.json({error:"unable to save post"})
     }
 })

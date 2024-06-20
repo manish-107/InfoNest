@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { decode, sign, verify } from 'hono/jwt'
+import { signininput } from "@mani_xsh/infonest-comman";
 
 export const userRouter  = new Hono<{
     Bindings:{
@@ -15,6 +16,13 @@ userRouter.post('/signup', async (c) => {
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
 	const body = await c.req.json();
+  const {success} = signininput.safeParse(body);
+  if(!success){
+    c.status(411)
+    return c.json({
+      message:"Invalid inputs"
+    })
+  }
 	try {
 		const user = await prisma.user.create({
 			data: {

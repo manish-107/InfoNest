@@ -67,8 +67,7 @@ blogRouter.post("/", async(c)=>{
         id:blog.id
     })
     } catch (error) {
-    
-       return c.json({error:"enable to create blog"})
+         return c.json({error:"enable to create blog"})
     }
 
 })

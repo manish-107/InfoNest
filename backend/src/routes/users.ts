@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { decode, sign, verify } from 'hono/jwt'
+import { sign } from 'hono/jwt'
 import { signininput, signupinput } from "@mani_xsh/infonest-comman";
 
 export const userRouter  = new Hono<{
@@ -10,6 +10,24 @@ export const userRouter  = new Hono<{
         JWT_SECRET: string;
     }
 }>();
+
+
+userRouter.post('/deleteAll', async(c)=>{
+  	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+  try {
+     await prisma.likePost.deleteMany({});
+    await prisma.savedPost.deleteMany({});
+   await prisma.post.deleteMany({});
+    await prisma.user.deleteMany({});
+    console.log("done");
+    return c.json({msg:"done"});
+  } catch (error) {
+      console.log(error);
+      return c.json({error:error})
+  }
+})
 
 userRouter.post('/signup', async (c) => {
 	const prisma = new PrismaClient({

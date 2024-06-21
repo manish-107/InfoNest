@@ -127,12 +127,40 @@ blogRouter.get("/post/:id", async(c)=>{
       const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
-        let post = await prisma.post.findUnique({
-            where:{
-                id:id
-            }
-          })
-          return c.json({post})
+        try {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+          },
+        },
+      },
+    });
+
+    if (!post) {
+      return c.json({ error: "Post not found" }, 404);
+    }
+
+    const response = {
+      ...post,
+      authorName: post.author.name,
+      likeCount: post._count.likes,
+    };
+
+    return c.json(response);
+ } catch (error) {
+    console.error(error);
+    return c.json({ error: "An error occurred while fetching the post" }, 500);
+ }
 })
 
 blogRouter.post('/like', async(c)=>{
@@ -173,6 +201,7 @@ blogRouter.post('/save', async(c)=>{
         return c.json({savedPost:savedPost})
     } catch (error) {
         c.status(400)
+        console.log(error);
        return c.json({
         error:"enable to save post"
        }) 
@@ -195,5 +224,31 @@ blogRouter.get('/savedPost', async(c)=>{
     } catch (error) {
         c.status(503)
         return c.json({error:"unable to save post"})
+    }
+})
+
+blogRouter.post('/deleteBlog', async(c)=>{
+      const userId = c.get('userId');
+     const {postId} = await c.req.json();
+      const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+    try {
+        const deleteBlog = await prisma.post.delete({
+            where:{
+                 authorId:userId,
+                 id:postId
+            }
+        })
+
+        return c.json({
+            message:deleteBlog
+        })
+
+    } catch (error) {
+        c.status(400)
+        return c.json({
+            error:error
+        })
     }
 })

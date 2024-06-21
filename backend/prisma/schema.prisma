@@ -21,7 +21,7 @@ model User {
   posts    Post[]
   likes    LikePost[]
   saved    SavedPost[]
-  date  DateTime   @default(now())
+  date     DateTime   @default(now())
 }
 
 model Post {
@@ -38,23 +38,24 @@ model Post {
 }
 
 model SavedPost {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   savedUserId String
   postId      String
-  user        User   @relation(fields: [savedUserId], references: [id])
-  post        Post   @relation(fields: [postId], references: [id])
+  user        User     @relation(fields: [savedUserId], references: [id])
+  post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   
   @@unique([savedUserId, postId])
 }
 
 model LikePost {
-  id     String @id @default(uuid())
+  id     String   @id @default(uuid())
   userId String
   postId String
-  user   User   @relation(fields: [userId], references: [id])
-  post   Post   @relation(fields: [postId], references: [id])
+  user   User     @relation(fields: [userId], references: [id])
+  post   Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@unique([userId, postId])
 }
+
 
 

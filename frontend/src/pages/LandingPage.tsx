@@ -1,7 +1,8 @@
-import Nav from "./Nav";
-import Blogs from "./Blogs";
+import Nav from "../components/Nav";
+import Blogs from "../components/Blogs";
 
 export default function LandingPage() {
+
   return (
     <div className="flex flex-col min-h-screen">
       <Nav/>
@@ -17,6 +18,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        
         <Blogs/>
       </main>
       <footer className="py-6 text-sm text-center text-gray-600 bg-gray-200">

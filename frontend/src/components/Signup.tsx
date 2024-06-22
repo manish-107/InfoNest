@@ -19,9 +19,9 @@ function Signup() {
           <div className="mb-6">
             <h3 className="text-2xl font-bold">Create an account</h3>
           </div>
-          <div className="space-y-5">
+          <div className="space-y-5 font-semibold">
             <div>
-              <label className="text-sm mb-2 block">Name</label>
+              <label className="text-sm mb-2 block text-start">Username</label>
               <div className="relative flex items-center">
                 <input name="name" type="text" required className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500" placeholder="Enter name" />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
@@ -31,7 +31,7 @@ function Signup() {
               </div>
             </div>
             <div>
-              <label className="text-sm mb-2 block">Email Id</label>
+              <label className="text-sm mb-2 block text-start">Email Id</label>
               <div className="relative flex items-center">
                 <input name="email" type="email" required className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500" placeholder="Enter email" />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-4 h-4 absolute right-4" viewBox="0 0 682.667 682.667">
@@ -48,7 +48,7 @@ function Signup() {
               </div>
             </div>
             <div>
-              <label className="text-sm mb-2 block">Password</label>
+              <label className="text-sm mb-2 block text-start">Password</label>
               <div className="relative flex items-center">
                 <input name="password" type="password" required className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500" placeholder="Enter password" />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
@@ -56,12 +56,7 @@ function Signup() {
                 </svg>
               </div>
             </div>
-            <div className="flex items-center">
-              <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
-              <label htmlFor="remember-me" className="ml-3 block text-sm">
-                I accept the <a href="javascript:void(0);" className="text-blue-600 font-semibold hover:underline ml-1">Terms and Conditions</a>
-              </label>
-            </div>
+            
           </div>
           <div className="!mt-10">
             <button type="button" className="w-full py-3 px-4 text-sm font-semibold rounded text-white bg-gray-700 hover:bg-gray-800 focus:outline-none">

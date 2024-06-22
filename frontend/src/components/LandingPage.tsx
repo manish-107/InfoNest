@@ -4,11 +4,11 @@ export default function LandingPage() {
       <header className="px-4 py-3 bg-gray-100 shadow-sm sm:px-6 md:px-8">
         <div className="container flex items-center justify-between mx-auto">
           <a href="#" className="text-2xl font-bold">
-            Blog
+          InfoNest-Blog
           </a>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-sm font-medium hover:underline">
-              Blog
+            <a href="#" className="text-sm font-semibold hover:underline">
+              Explore
             </a>
             <a
               href="#"

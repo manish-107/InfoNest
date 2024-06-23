@@ -1,4 +1,4 @@
-const Nav: React.FC = () => {
+const Blogs: React.FC = () => {
     return (
         <section className="py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="container px-4 mx-auto sm:px-6 md:px-8">
@@ -96,4 +96,4 @@ const Nav: React.FC = () => {
     );
   }
   
-  export default Nav;
+  export default Blogs;

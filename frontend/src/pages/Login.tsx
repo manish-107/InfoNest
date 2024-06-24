@@ -3,8 +3,8 @@ import  signupimg  from "../assets/signupimg-min.png";
 
 const Login = () => {
   return (
-    <div className="flex items-center justify-center w-full h-screen px-5 sm:px-0">
-      <div className="flex w-full max-w-sm overflow-hidden bg-white border rounded-lg shadow-lg lg:max-w-4xl">
+    <div className="flex items-center justify-center w-full h-screen px-5 bg-slate-900 sm:px-0">
+      <div className="flex w-full max-w-sm overflow-hidden text-white bg-black border rounded-lg shadow-lg lg:max-w-4xl">
         <div
           className="hidden bg-blue-700 bg-cover md:block lg:w-1/2"
         style={{
@@ -13,33 +13,28 @@ const Login = () => {
 
         ></div>
         <div className="w-full p-8 lg:w-1/2">
-          <p className="text-xl text-center text-gray-600">Welcome back!</p>
+          <p className="text-xl text-center ">Welcome back!</p>
           <div className="mt-4">
-            <label className="block mb-2 text-sm font-bold text-gray-700">
+            <label className="block mb-2 text-sm font-bold ">
               Email Address
             </label>
             <input
-              className="block w-full px-4 py-2 text-gray-700 border border-gray-300 rounded focus:outline-2 focus:outline-blue-700"
+              className="block w-full px-4 py-2 bg-black border border-gray-300 rounded focus:outline-2 focus:outline-blue-700"
               type="email"
               required
             />
           </div>
           <div className="flex flex-col justify-between mt-4">
             <div className="flex justify-between">
-              <label className="block mb-2 text-sm font-bold text-gray-700">
+              <label className="block mb-2 text-sm font-bold ">
                 Password
               </label>
             </div>
             <input
-              className="block w-full px-4 py-2 text-gray-700 border border-gray-300 rounded focus:outline-2 focus:outline-blue-700"
+              className="block w-full px-4 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-700"
               type="password"
             />
-            <a
-              href="#"
-              className="w-full mt-2 text-xs text-gray-500 hover:text-gray-900 text-end"
-            >
-              Forget Password?
-            </a>
+           
           </div>
           <div className="mt-8">
             <button className="w-full px-4 py-2 font-bold text-white bg-blue-700 rounded hover:bg-blue-600">
@@ -50,7 +45,7 @@ const Login = () => {
             href="#"
             className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
           >
-            <div className="flex justify-center w-full px-5 py-3">
+            <div className="flex justify-center w-full px-5 py-3 bg-white">
               <div className="min-w-[30px]">
                 <svg className="w-6 h-6" viewBox="0 0 40 40">
                   <path

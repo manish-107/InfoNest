@@ -23,7 +23,7 @@ export default function LandingPage() {
               </p>
               <Link
                 to="/signin"
-                className="inline-flex items-center m-5 text-lg font-semibold text-blue-600 hover:underline"
+                className="inline-flex items-center m-5 text-3xl font-bold text-blue-600 hover:underline"
               >
                 Get Started
                 <svg

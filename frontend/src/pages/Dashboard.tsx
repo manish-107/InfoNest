@@ -1,5 +1,7 @@
+import AllBlogList from "../components/AllBlogList";
 import Blogs from "../components/Blogs";
 import MainNav from "../components/MainNav";
+import Section from "../components/Section";
 
 const Dashboard = () => {
   return (
@@ -7,7 +9,7 @@ const Dashboard = () => {
       <MainNav />
       <div className="flex justify-center">
         <div className="container p-5 pb-10">
-          <div className="bg-white border-2 rounded-lg dark:bg-gray-900 dark:text-gray-100 border-slate-700">
+          <div className="border-2 rounded-lg bg-gradient-to-r to-gray-900 from-slate-900 dark:text-gray-100 border-slate-700">
             <div className="container px-4 py-8 mx-auto space-y-8 lg:px-6 lg:py-10 xl:max-w-7xl">
               <div className="text-center">
                 <h2 className="mb-4 text-3xl font-black text-transparent md:text-4xl bg-clip-text bg-gradient-to-r to-pink-700 from-red-400">
@@ -55,6 +57,11 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+      <Section/>
+      <div className="container flex justify-center">
+
+      {/* <AllBlogList/> */}
       </div>
       <Blogs />
     </div>

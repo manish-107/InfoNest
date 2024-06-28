@@ -6,7 +6,7 @@ const videos = [
   { imgSrc: 'https://picsum.photos/seed/90/300/200', profileSrc: 'https://picsum.photos/seed/57/40/40', title: 'Learn CSS Box Model in 8 Minutes', channel: 'Web Dev Simplified', views: '241K views', time: '3 years ago' },
 ];
 
-const VideoGrid: React.FC = () => {
+const Section: React.FC = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="grid max-w-6xl grid-cols-12 gap-2 gap-y-4">
@@ -39,4 +39,4 @@ const VideoGrid: React.FC = () => {
   );
 };
 
-export default VideoGrid;
+export default Section;

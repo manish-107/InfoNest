@@ -1,82 +1,93 @@
+import React from 'react';
 
-const AllBlogList = () => {
-  return (
-    <div>
-      <article className="bg-white border-2 border-gray-100 rounded-xl">
-  <div className="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
-    <a href="#" className="block shrink-0">
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
-        className="object-cover rounded-lg size-14"
-      />
-    </a>
+interface BlogPostProps {
+  title: string;
+  description: string;
+  author: string;
+  date: string;
+  avatar: string;
+  backgroundImage: string;
+}
 
-    <div>
-      <h3 className="font-medium sm:text-lg">
-        <a href="#" className="hover:underline"> Question about Livewire Rendering and Alpine JS </a>
-      </h3>
-
-      <p className="text-sm text-gray-700 line-clamp-2">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, accusantium temporibus
-        iure delectus ut totam natus nesciunt ex? Ducimus, enim.
-      </p>
-
-      <div className="mt-2 sm:flex sm:items-center sm:gap-2">
-        <div className="flex items-center gap-1 text-gray-500">
+const BlogPost: React.FC<BlogPostProps> = ({ title, description, author, date, avatar, backgroundImage }) => (
+  <div className="w-11/12 max-w-sm mt-10 lg:max-w-full lg:flex">
+    <div
+      className="flex-none h-48 overflow-hidden text-center bg-cover rounded-t lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+      title="Woman holding a mug"
+    ></div>
+    <div className="flex flex-col justify-between p-4 leading-normal bg-white border-b border-l border-r border-gray-400 rounded-b lg:border-l-0 lg:border-t lg:border-gray-400 lg:rounded-b-none lg:rounded-r">
+      <div className="mb-8">
+        <p className="flex items-center text-sm text-gray-600">
           <svg
+            className="w-3 h-3 mr-2 text-gray-500 fill-current"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
+            viewBox="0 0 20 20"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-            />
+            <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
           </svg>
-
-          <p className="text-xs">14 comments</p>
-        </div>
-
-        <span className="hidden sm:block" aria-hidden="true">&middot;</span>
-
-        <p className="hidden sm:block sm:text-xs sm:text-gray-500">
-          Posted by
-          <a href="#" className="font-medium underline hover:text-gray-700"> John </a>
+          Members only
         </p>
+        <div className="mb-2 text-xl font-bold text-gray-900">{title}</div>
+        <p className="text-base text-gray-700">{description}</p>
+      </div>
+      <div className="flex items-center">
+        <img className="w-10 h-10 mr-4 rounded-full" src={avatar} alt={`Avatar of ${author}`} />
+        <div className="text-sm">
+          <p className="leading-none text-gray-900">{author}</p>
+          <p className="text-gray-600">{date}</p>
+        </div>
       </div>
     </div>
   </div>
+);
 
-  <div className="flex justify-end">
-    <strong
-      className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-green-600 px-3 py-1.5 text-white"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-4 h-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+const AllBlogList: React.FC = () => {
+  const blogs = [
+    {
+      title: 'Can coffee make you a better developer?',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
+      author: 'Jonathan Reinink',
+      date: 'Aug 18',
+      avatar: 'https://picsum.photos/seed/59/300/200',
+      backgroundImage: 'https://picsum.photos/seed/59/300/200',
+    },
+    {
+      title: 'Can coffee make you a better developer?',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
+      author: 'Jonathan Reinink',
+      date: 'Aug 18',
+      avatar: 'https://picsum.photos/seed/59/300/200',
+      backgroundImage: 'https://picsum.photos/seed/59/300/200',
+    },
+    // Add more blog objects here
+  ];
+
+  return (
+    <div className='flex flex-col items-center'>
+      {blogs.map((blog, index) => (
+        <BlogPost
+          key={index}
+          title={blog.title}
+          description={blog.description}
+          author={blog.author}
+          date={blog.date}
+          avatar={blog.avatar}
+          backgroundImage={blog.backgroundImage}
         />
-      </svg>
-
-      <span className="text-[10px] font-medium sm:text-xs">Solved!</span>
-    </strong>
-  </div>
-</article>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default AllBlogList
+const App: React.FC = () => {
+  return (
+    <div className="flex items-center justify-center mt-20 ">
+      <div className="container mb-20">
+        <AllBlogList />
+      </div>
+    </div>
+  );
+};
+
+export default App;

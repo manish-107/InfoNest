@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import  Section  from "../components/Section";
 import Nav from "../components/Nav";
 import { useState } from "react";
 import Login from "./Login";
@@ -15,7 +16,7 @@ export default function LandingPage() {
 
       <main className="flex-1 pt-10 bg-black">
         <section className="py-12 bg-transparent sm:py-16 md:py-20 lg:py-24">
-          <div className="container px-4 mx-auto sm:px-6 md:px-8">
+          <div className="container px-4 pb-20 mx-auto sm:px-6 md:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="pl-5 pr-5 mb-4 text-3xl font-extrabold text-gray-500 md:pl-3 md:pr-3 dark:text-white md:text-5xl lg:text-6xl">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
@@ -88,6 +89,8 @@ export default function LandingPage() {
             </div>
           </div>
           */}
+      <Section/>
+          
         </section>
       </main>
       <Footer />

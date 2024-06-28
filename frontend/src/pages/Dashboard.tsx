@@ -1,5 +1,6 @@
+
 import AllBlogList from "../components/AllBlogList";
-import Blogs from "../components/Blogs";
+import Footer from "../components/Footer";
 import MainNav from "../components/MainNav";
 import Section from "../components/Section";
 
@@ -59,11 +60,10 @@ const Dashboard = () => {
         </div>
       </div>
       <Section/>
-      <div className="container flex justify-center">
+      <AllBlogList/>
 
-      {/* <AllBlogList/> */}
-      </div>
-      <Blogs />
+      <Footer/>
+
     </div>
   );
 };

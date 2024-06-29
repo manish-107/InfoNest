@@ -4,6 +4,7 @@ import  Signup  from './pages/Signup'
 import LandingPage from './pages/LandingPage'
 import Modal from './components/Modal'
 import Dashboard from './pages/Dashboard'
+import WriteBlogPage from './pages/WriteBlogPage'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Modal/>}/>
           <Route path="/dashboard" element={ <Dashboard/>} />
+          <Route path="/writeblog" element={ <WriteBlogPage/>} />
         </Routes>
       </BrowserRouter>
     </>

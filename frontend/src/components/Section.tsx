@@ -24,10 +24,10 @@ const Section: React.FC = () => {
                 </a>
                 <div className="flex flex-col">
                   <a href="#">
-                    <p className="text-sm font-semibold text-gray-100">{video.title}</p>
+                    <p className="text-sm font-semibold">{video.title}</p>
                   </a>
-                  <a className="mt-2 text-xs text-gray-400 hover:text-gray-100" href="#">{video.channel}</a>
-                  <p className="mt-1 text-xs text-gray-400">{video.views} . {video.time}</p>
+                  <a className="mt-2 text-xs hover:text-gray-100" href="#">{video.channel}</a>
+                  <p className="mt-1 text-xs ">{video.views} . {video.time}</p>
                 </div>
               </div>
             </div>

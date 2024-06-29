@@ -59,7 +59,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <div className="text-white"> 
+
       <Section/>
+      </div>
       <AllBlogList/>
 
       <Footer/>

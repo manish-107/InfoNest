@@ -2,92 +2,34 @@ import React from 'react';
 
 interface BlogPostProps {
   title: string;
-  description: string;
   author: string;
   date: string;
   avatar: string;
   backgroundImage: string;
+  link: string;
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ title, description, author, date, avatar, backgroundImage }) => (
-  <div className="w-11/12 max-w-sm mt-10 lg:max-w-full lg:flex">
-    <div
-      className="flex-none h-48 overflow-hidden text-center bg-cover rounded-t lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-      title="Woman holding a mug"
-    ></div>
-    <div className="flex flex-col justify-between p-4 leading-normal bg-white border-b border-l border-r border-gray-400 rounded-b lg:border-l-0 lg:border-t lg:border-gray-400 lg:rounded-b-none lg:rounded-r">
-      <div className="mb-8">
-        <p className="flex items-center text-sm text-gray-600">
-          <svg
-            className="w-3 h-3 mr-2 text-gray-500 fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-          </svg>
-          Members only
-        </p>
-        <div className="mb-2 text-xl font-bold text-gray-900">{title}</div>
-        <p className="text-base text-gray-700">{description}</p>
-      </div>
-      <div className="flex items-center">
-        <img className="w-10 h-10 mr-4 rounded-full" src={avatar} alt={`Avatar of ${author}`} />
-        <div className="text-sm">
-          <p className="leading-none text-gray-900">{author}</p>
-          <p className="text-gray-600">{date}</p>
+const BlogPost: React.FC<BlogPostProps> = ({ title, author, date, avatar, backgroundImage, link }) => (
+  <article className="relative flex flex-col justify-end px-4 py-4 pt-48 pb-4 overflow-hidden bg-gray-900 isolate rounded-2xl dark:bg-gray-700 sm:pt-32 lg:pt-48">
+    <img src={backgroundImage} alt="" className="absolute inset-0 object-cover w-full h-full -z-10" />
+    <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+    <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+    <div className="flex flex-wrap items-center overflow-hidden text-sm leading-6 text-gray-300 gap-y-1">
+      <time className="mr-8">{date}</time>
+      <div className="flex items-center -ml-4 gap-x-4">
+        <svg viewBox="0 0 2 2" className="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50">
+          <circle cx="1" cy="1" r="1"></circle>
+        </svg>
+        <div className="flex gap-x-2.5">
+          <img src={avatar} alt="" className="flex-none w-6 h-6 rounded-full bg-white/10" />
+          {author}
         </div>
       </div>
     </div>
-  </div>
+    <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+      <a href={link}><span className="absolute inset-0"></span>{title}</a>
+    </h3>
+  </article>
 );
 
-const AllBlogList: React.FC = () => {
-  const blogs = [
-    {
-      title: 'Can coffee make you a better developer?',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-      author: 'Jonathan Reinink',
-      date: 'Aug 18',
-      avatar: 'https://picsum.photos/seed/59/300/200',
-      backgroundImage: 'https://picsum.photos/seed/59/300/200',
-    },
-    {
-      title: 'Can coffee make you a better developer?',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-      author: 'Jonathan Reinink',
-      date: 'Aug 18',
-      avatar: 'https://picsum.photos/seed/59/300/200',
-      backgroundImage: 'https://picsum.photos/seed/59/300/200',
-    },
-    // Add more blog objects here
-  ];
-
-  return (
-    <div className='flex flex-col items-center'>
-      {blogs.map((blog, index) => (
-        <BlogPost
-          key={index}
-          title={blog.title}
-          description={blog.description}
-          author={blog.author}
-          date={blog.date}
-          avatar={blog.avatar}
-          backgroundImage={blog.backgroundImage}
-        />
-      ))}
-    </div>
-  );
-};
-
-const App: React.FC = () => {
-  return (
-    <div className="flex items-center justify-center mt-20 ">
-      <div className="container mb-20">
-        <AllBlogList />
-      </div>
-    </div>
-  );
-};
-
-export default App;
+export default BlogPost;

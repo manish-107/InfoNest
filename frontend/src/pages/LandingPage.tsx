@@ -89,7 +89,10 @@ export default function LandingPage() {
             </div>
           </div>
           */}
+          <div className="text-white">
+
       <Section/>
+          </div>
           
         </section>
       </main>

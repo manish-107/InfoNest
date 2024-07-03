@@ -6,6 +6,7 @@ import Modal from './components/Modal'
 import Dashboard from './pages/Dashboard'
 import WriteBlogPage from './pages/WriteBlogPage'
 import BlogDetails from './pages/BlogDetails'
+import UserProfiles from './pages/UserProfiles'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/dashboard" element={ <Dashboard/>} />
           <Route path="/writeblog" element={ <WriteBlogPage/>} />
           <Route path="/blogpreview" element={<BlogDetails/>} />
+          <Route path="/userprofile" element={<UserProfiles/>} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,4 +1,12 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
+import { SignupInput } from "@mani_xsh/infonest-comman";
+
+const loginInput = useState<SignupInput>({
+  email:"",
+  password:"",
+  name:""
+})
 
 function Signup() {
 

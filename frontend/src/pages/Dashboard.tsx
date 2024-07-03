@@ -5,6 +5,57 @@ import MainNav from "../components/MainNav";
 import Section from "../components/Section";
 
 const Dashboard = () => {
+    const blogs = [
+      {
+        title: 'The Future of Artificial Intelligence: Trends and Challenges',
+        author: 'John',
+        date: 'Oct 11, 2023',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        backgroundImage: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxhaXxlbnwwfDB8fHwxNzEyNzUzMTQ4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+        link: '/tech-blog/post1',
+      },
+      {
+        title: 'The Future of Artificial Intelligence: Trends and Challenges',
+        author: 'John',
+        date: 'Oct 11, 2023',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        backgroundImage: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxhaXxlbnwwfDB8fHwxNzEyNzUzMTQ4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+        link: '/tech-blog/post1',
+      },
+      {
+        title: 'The Future of Artificial Intelligence: Trends and Challenges',
+        author: 'John',
+        date: 'Oct 11, 2023',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        backgroundImage: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxhaXxlbnwwfDB8fHwxNzEyNzUzMTQ4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+        link: '/tech-blog/post1',
+      },
+      {
+        title: 'The Future of Artificial Intelligence: Trends and Challenges',
+        author: 'John',
+        date: 'Oct 11, 2023',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        backgroundImage: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxhaXxlbnwwfDB8fHwxNzEyNzUzMTQ4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+        link: '/tech-blog/post1',
+      },
+      {
+        title: 'Blockchain Technology: Beyond Cryptocurrencies',
+        author: 'Alex',
+        date: 'Sept 25, 2023',
+        avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+        backgroundImage: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxibG9jayUyMGNoYWlufGVufDB8MHx8fDE3MTI3NTMxNjd8MA&ixlib=rb-4.0.3&q=80&w=1080',
+        link: '/tech-blog/post2',
+      },
+      {
+        title: 'Cloud Computing: The Backbone of Modern Applications',
+        author: 'Mike',
+        date: 'Aug 12, 2023',
+        avatar: 'https://randomuser.me/api/portraits/men/3.jpg',
+        backgroundImage: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxjbG91ZHxlbnwwfDB8fHwxNzEyNzUzMTY4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+        link: '/tech-blog/post3',
+      },
+      // Add more blog objects here if needed
+    ];
   return (
     <div className="bg-black ">
       <MainNav />
@@ -63,7 +114,30 @@ const Dashboard = () => {
 
       <Section/>
       </div>
-      <AllBlogList/>
+       <div className="flex items-center justify-center mt-20">
+      <div className="container mb-20">
+        <div className="w-full ">
+          <div className="px-6 pt-8 mx-auto max-w-7xl lg:px-8">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">From The Blog</h2>
+            </div>
+            <div className="grid max-w-2xl grid-cols-1 gap-8 mx-auto mt-8 auto-rows-fr sm:mt-12 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      {blogs.map((blog, index) => (
+        <AllBlogList
+          key={index}
+          title={blog.title}
+          author={blog.author}
+          date={blog.date}
+          avatar={blog.avatar}
+          backgroundImage={blog.backgroundImage}
+          link={blog.link}
+        />
+      ))}
+    </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
       <Footer/>
 

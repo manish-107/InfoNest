@@ -13,7 +13,7 @@ const MainNav: React.FC = () => {
               <Link to="/dashboard">Explore</Link>
             </li>
             <li  className="inline-flex items-center justify-center px-3 py-1 text-sm font-normal text-white transition-colors bg-blue-600 rounded-md shadow md:px-4 md:py-2 md:font-medium bg-gradient-to-br from-purple-600 to-blue-500 ">
-               Sign In
+               <Link to="/userprofile">User details</Link>
             </li>
             <li className="inline-flex items-center justify-center px-3 py-1 text-sm font-normal text-white transition-colors bg-black border rounded-md shadow border-slate-500 hover:bg-slate-800 md:px-4 md:py-2 md:font-medium bg-gradient-to-br ">
                <Link  to="/writeblog">Write Blog</Link> 

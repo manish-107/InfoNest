@@ -8,7 +8,7 @@ const videos = [
 
 const Section: React.FC = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center ">
       <div className="grid max-w-6xl grid-cols-12 gap-2 gap-y-4">
         {videos.map((video, index) => (
           <div key={index} className="col-span-12 sm:col-span-6 md:col-span-3">

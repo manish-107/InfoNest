@@ -1,39 +1,63 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SignupInput } from "@mani_xsh/infonest-comman";
+import TosterMsg from "../components/TosterMsg";
 import axios from "axios";
 
-
-
+type Showmsg = {
+  title: String;
+  show: Boolean;
+  color: String;
+};
 
 function Signup() {
-
-  const [loginInput, setloginInput] = useState<SignupInput>({
+  const [showMsg, setshowMsg] = useState<Showmsg>({
+    title: "",
+    show: false,
+    color: "",
+  });
+  const [signupInput, setsignupInput] = useState<SignupInput>({
     email: "",
     name: "",
-    password: ""
+    password: "",
   });
 
   const handelInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name,value);
-    setloginInput((prevInput) => ({
+    setsignupInput((prevInput) => ({
       ...prevInput,
       [name]: value,
     }));
   };
 
+  const signupUser = async () => {
+    try {
+      const res = await axios.post(
+        "https://backend.demomanishemail1234.workers.dev/api/v1/user/signup",
+        signupInput
+      );
+      localStorage.setItem("token", `Barrer ${res.data.jwt}`);
+      setshowMsg({ title: "Login successfull", show: true, color: "green" });
+      setTimeout(() => {
+        setshowMsg({ title: "", show: false, color: "" });
+      }, 3000);
 
-  const signupUser = async()=>{
-   try {
-     const res = await axios.post('https://backend.demomanishemail1234.workers.dev/api/v1/user/signup',loginInput);
-     console.log(res)
-   } catch (error) {
-    console.log(error)
-   }
-}
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+      setshowMsg({ title: "unable to Signup", show: true, color: "red" });
+      setTimeout(() => {
+        setshowMsg({ title: "", show: false, color: "" });
+      }, 3000);
+    }
+  };
   return (
     <>
+      {showMsg.show ? (
+        <TosterMsg title={showMsg.title} color={showMsg.color} />
+      ) : (
+        ""
+      )}
       <div className="font-[sans-serif] text-gray-800 bg-white max-w-4xl flex items-center mx-auto md:h-screen p-4">
         <div className="grid md:grid-cols-3 items-center shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-xl overflow-hidden">
           <div className="flex flex-col justify-center min-h-full px-4 py-4 space-y-16 max-md:order-1 max-md:mt-16 bg-gradient-to-r from-gray-900 to-gray-700 lg:px-8">
@@ -70,7 +94,7 @@ function Signup() {
                     name="name"
                     type="text"
                     required
-                    value={loginInput.name}
+                    value={signupInput.name}
                     onChange={handelInput}
                     className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
                     placeholder="Enter name"
@@ -103,7 +127,7 @@ function Signup() {
                   <input
                     name="email"
                     type="email"
-                    value={loginInput.email}
+                    value={signupInput.email}
                     onChange={handelInput}
                     required
                     className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
@@ -151,7 +175,7 @@ function Signup() {
                   <input
                     name="password"
                     type="password"
-                    value={loginInput.password}
+                    value={signupInput.password}
                     onChange={handelInput}
                     required
                     className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
@@ -175,6 +199,7 @@ function Signup() {
             <div className="!mt-10">
               <button
                 type="button"
+                onClick={() => signupUser()}
                 className="w-full px-4 py-3 text-sm font-semibold text-white bg-gray-700 rounded hover:bg-gray-800 focus:outline-none"
               >
                 Create an account
